@@ -74,21 +74,21 @@ function removeElementsByClass(className) {
 
 
 const modalWindow =
-    '<div class="modal-overlay modal-overlay_hidden" id="10">\n' +
-    '   <div class="delete-modal">\n' +
-    '       <h3 class="delete-modal__question">\n' +
-    '           Вы действительно хотите удалить эту задачу?\n' +
-    '       </h3>\n' +
-    '       <div class="delete-modal__buttons">\n' +
-    '           <button class="delete-modal__button delete-modal__cancel-button">\n' +
-    '               Отмена\n' +
-    '           </button>\n' +
-    '           <button class="delete-modal__button delete-modal__confirm-button">\n' +
-    '               Удалить\n' +
-    '           </button>\n' +
-    '       </div>\n' +
-    '   </div>\n' +
-    '</div>\n'
+    `<div class="modal-overlay modal-overlay_hidden" id="10">
+       <div class="delete-modal">
+           <h3 class="delete-modal__question">
+               Вы действительно хотите удалить эту задачу?
+           </h3>
+           <div class="delete-modal__buttons">
+               <button class="delete-modal__button delete-modal__cancel-button">
+                   Отмена\
+               </button>
+               <button class="delete-modal__button delete-modal__confirm-button">
+                   Удалить
+              </button>
+           </div>
+       </div>
+    </div>`
 
 
 const deletedTask = document.querySelector('.tasks-list')
@@ -114,6 +114,11 @@ deletedTask.addEventListener('click', (mainEvent) => {
         if (deleteButton) {
             const dataTaskElement = mainEvent.target.closest('.task-item')
             dataTaskElement.remove()
+
+           const taskIdForDelete = dataTaskElement.getAttribute('data-task-id')
+            console.log(taskIdForDelete)
+            tasks = tasks.filter((task) => task.id != taskIdForDelete)
+
 
             modalOverlayDiv.classList.add('modal-overlay_hidden')
         }
